@@ -12,9 +12,9 @@ def del_first(arr_of_lines):
 
 
 def read_dish(arr_of_lines, cook_book):
-    if arr_of_lines[0] == '\n':
+    if arr_of_lines[0].strip() == '':
         del_first(arr_of_lines)
-    name_dish = arr_of_lines[0][:len(arr_of_lines[0])-1].lower()
+    name_dish = arr_of_lines[0].strip().lower()
     del_first(arr_of_lines)
     cook_book[name_dish] = []
     count_ing = int(arr_of_lines[0])
@@ -26,7 +26,7 @@ def read_dish(arr_of_lines, cook_book):
         b = ing.split(' | ')
         cook_book[name_dish][i]['ingridient_name'] = b[0]
         cook_book[name_dish][i]['quantity'] = int(b[1])
-        cook_book[name_dish][i]['measure'] = b[2][:len(b[2])-1]
+        cook_book[name_dish][i]['measure'] = b[2].strip()
     return arr_of_lines, cook_book
 
 
