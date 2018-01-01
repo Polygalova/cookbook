@@ -9,18 +9,18 @@ def get_shop_list():
     n = int(input('Сколько человек?'))
     dishes = input('Что будем готовить?').lower().strip().split(', ')
     shop_list = []
-    f = open('cookbook.txt', encoding='utf8')
-    for line in f:
-        if line.lower().strip() in dishes:
-            quan_ing = int(f.readline().strip())
-            for i in range(quan_ing):
-                ing, quan, meas = f.readline().strip().split(' | ')
-                new_ing = {'ingridient_name': ing, 'quantity': int(quan), 'measure': meas}
-                result = is_in(shop_list, new_ing)
-                if result is None:
-                    shop_list.append(new_ing)
-                else:
-                    shop_list[result]['quantity'] += new_ing['quantity']
+    with open('cookbook.txt', encoding='utf8') as f:
+        for line in f:
+            if line.lower().strip() in dishes:
+                quan_ing = int(f.readline().strip())
+                for i in range(quan_ing):
+                    ing, quan, meas = f.readline().strip().split(' | ')
+                    new_ing = {'ingridient_name': ing, 'quantity': int(quan), 'measure': meas}
+                    result = is_in(shop_list, new_ing)
+                    if result is None:
+                        shop_list.append(new_ing)
+                    else:
+                        shop_list[result]['quantity'] += new_ing['quantity']
     for ingredient in shop_list:
         ingredient['quantity'] *= n
     return shop_list
