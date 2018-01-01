@@ -2,7 +2,6 @@ def is_in(shop_list, new_ing):
     for i in range(len(shop_list)):
         if new_ing['ingridient_name'] == shop_list[i]['ingridient_name']:
             return i
-    return
 
 
 def get_shop_list():
